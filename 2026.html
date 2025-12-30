@@ -1,0 +1,1615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026: Our Year to Shine - sean_tech_hub</title>
+    <meta name="description" content="A heartfelt celebration of 2025's journey and an encouraging vision for 2026 - brought to you by sean_tech_hub">
+    
+    <!-- Social Media -->
+    <meta property="og:title" content="2026: Our Year to Shine">
+    <meta property="og:description" content="From sean_tech_hub: Celebrating our struggles, victories, and the amazing year ahead">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎉</text></svg>">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+            .particle, .balloon { display: none; }
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Branding */
+        .branding {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 12px 24px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .branding span {
+            font-weight: 600;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        /* Profile Section */
+        .profile-section {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: linear-gradient(135deg, rgba(240, 147, 251, 0.15), rgba(245, 87, 108, 0.15));
+            backdrop-filter: blur(15px);
+            padding: 12px 25px;
+            border-radius: 50px;
+            border: 2px solid rgba(240, 147, 251, 0.4);
+            box-shadow: 0 8px 32px rgba(240, 147, 251, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .profile-section:hover {
+            background: linear-gradient(135deg, rgba(240, 147, 251, 0.25), rgba(245, 87, 108, 0.25));
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(240, 147, 251, 0.4);
+            border-color: rgba(240, 147, 251, 0.6);
+        }
+
+        .profile-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(135deg, #f093fb, #f5576c, #feca57) border-box;
+            object-fit: cover;
+            animation: profile-pulse 3s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(240, 147, 251, 0.6);
+        }
+
+        @keyframes profile-pulse {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(240, 147, 251, 0.6),
+                           0 0 40px rgba(240, 147, 251, 0.3);
+                transform: scale(1);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(245, 87, 108, 0.8),
+                           0 0 60px rgba(245, 87, 108, 0.4);
+                transform: scale(1.05);
+            }
+        }
+
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .profile-name {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 2px 8px rgba(240, 147, 251, 0.4);
+        }
+
+        .profile-handle {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+        }
+
+        .tiktok-icon {
+            width: 16px;
+            height: 16px;
+            filter: drop-shadow(0 2px 4px rgba(240, 147, 251, 0.5));
+        }
+
+        /* Fireworks Overlay */
+        .fireworks-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .fireworks-overlay.active {
+            display: flex;
+        }
+
+        .fireworks-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .newyear-message {
+            position: relative;
+            z-index: 10000;
+            text-align: center;
+            animation: celebration-zoom 1s ease-out;
+        }
+
+        @keyframes celebration-zoom {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .newyear-message h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, #ffd700, #ffed4e, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            animation: glow-gold 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow-gold {
+            from {
+                filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.8));
+            }
+            to {
+                filter: drop-shadow(0 0 60px rgba(255, 237, 78, 1));
+            }
+        }
+
+        .newyear-message p {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            color: #fff;
+            margin-bottom: 30px;
+        }
+
+        .close-fireworks {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            border: none;
+            border-radius: 50px;
+            color: #000;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .close-fireworks:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.7);
+        }
+
+        /* Music Player */
+        .music-player {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .music-player:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .music-toggle {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .music-toggle:hover {
+            transform: scale(1.2);
+        }
+
+        .music-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .music-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .music-status {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Particles & Balloons */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #fff;
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: float linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .balloon {
+            position: absolute;
+            bottom: -100px;
+            width: 40px;
+            height: 50px;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            opacity: 0.8;
+            animation: rise ease-in forwards;
+        }
+
+        .balloon::before {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        @keyframes rise {
+            to {
+                bottom: 110vh;
+                transform: translateX(20px);
+            }
+        }
+
+        /* Main Content */
+        main {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                filter: drop-shadow(0 0 20px rgba(240, 147, 251, 0.5));
+            }
+            to {
+                filter: drop-shadow(0 0 40px rgba(245, 87, 108, 0.7));
+            }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            margin-bottom: 60px;
+            opacity: 0.9;
+        }
+
+        .countdown-container {
+            margin-top: 40px;
+        }
+
+        .countdown {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .time-unit {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px 25px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            min-width: 120px;
+        }
+
+        .time-value {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .time-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 10px;
+            opacity: 0.8;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            text-align: center;
+            margin-bottom: 60px;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Memories Section */
+        .memories {
+            text-align: center;
+        }
+
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .highlight-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px 25px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .highlight-card:hover::before {
+            left: 100%;
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(240, 147, 251, 0.5);
+            box-shadow: 0 20px 60px rgba(240, 147, 251, 0.3);
+        }
+
+        .highlight-emoji {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            display: block;
+            animation: float-emoji 3s ease-in-out infinite;
+        }
+
+        @keyframes float-emoji {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .highlight-card:nth-child(1) .highlight-emoji { animation-delay: 0s; }
+        .highlight-card:nth-child(2) .highlight-emoji { animation-delay: 0.5s; }
+        .highlight-card:nth-child(3) .highlight-emoji { animation-delay: 1s; }
+        .highlight-card:nth-child(4) .highlight-emoji { animation-delay: 1.5s; }
+
+        .highlight-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .highlight-card p {
+            font-size: 0.95rem;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        .memories-text {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .memories-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        /* Timeline */
+        .timeline-container {
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 80px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-icon {
+            flex-shrink: 0;
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .timeline-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #f093fb;
+        }
+
+        .timeline-content p {
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        /* Achievements */
+        .achievement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .achievement-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .achievement-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .achievement-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .achievement-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #f5576c;
+        }
+
+        .achievement-card p {
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        /* Vision 2026 */
+        .vision-2026 {
+            background: linear-gradient(135deg, rgba(240, 147, 251, 0.1), rgba(245, 87, 108, 0.1));
+            border-radius: 30px;
+            padding: 80px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(240, 147, 251, 0.3);
+            box-shadow: 0 20px 60px rgba(240, 147, 251, 0.2);
+        }
+
+        .vision-2026::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(240, 147, 251, 0.1), transparent);
+            animation: shine 3s linear infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .vision-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .vision-content h2 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, #f093fb, #f5576c, #feca57, #f093fb);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 3s ease infinite;
+            font-weight: 900;
+            text-shadow: 0 0 30px rgba(240, 147, 251, 0.5);
+            letter-spacing: 2px;
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .vision-content p {
+            font-size: 1.3rem;
+            line-height: 2;
+            margin-bottom: 30px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fade-in-up 0.8s ease forwards;
+            opacity: 0;
+        }
+
+        .vision-content p:nth-of-type(1) { animation-delay: 0.2s; }
+        .vision-content p:nth-of-type(2) { animation-delay: 0.4s; }
+        .vision-content p:nth-of-type(3) { animation-delay: 0.6s; }
+        .vision-content p:nth-of-type(4) { animation-delay: 0.8s; }
+        .vision-content p:nth-of-type(5) { animation-delay: 1s; }
+
+        @keyframes fade-in-up {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+        }
+
+        .vision-footer {
+            font-size: 2.5rem;
+            margin-top: 50px;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 20px rgba(240, 147, 251, 0.5));
+            }
+            50% {
+                transform: scale(1.05);
+                filter: drop-shadow(0 0 40px rgba(245, 87, 108, 0.8));
+            }
+        }
+
+        .vision-sparkles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #fff;
+            border-radius: 50%;
+            animation: sparkle-float 4s ease-in-out infinite;
+            opacity: 0;
+        }
+
+        @keyframes sparkle-float {
+            0%, 100% { opacity: 0; transform: translateY(0) scale(0); }
+            50% { opacity: 1; transform: translateY(-50px) scale(1); }
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            body {
+                font-size: 14px;
+            }
+
+            .branding {
+                font-size: 0.85rem;
+                padding: 8px 16px;
+                top: 10px;
+                left: 10px;
+            }
+
+            .profile-section {
+                top: 10px;
+                right: 10px;
+                left: auto;
+                width: auto;
+                flex-direction: row;
+                padding: 8px 16px;
+                gap: 10px;
+                max-width: calc(100vw - 20px);
+                margin-left: auto;
+            }
+
+            .profile-image {
+                width: 40px;
+                height: 40px;
+                border-width: 2px;
+            }
+
+            .profile-info {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .profile-name {
+                font-size: 0.8rem;
+            }
+
+            .profile-handle {
+                font-size: 0.7rem;
+            }
+
+            .tiktok-icon {
+                width: 12px;
+                height: 12px;
+            }
+            
+            .music-player {
+                bottom: 15px;
+                right: 15px;
+                padding: 10px 14px;
+                gap: 10px;
+            }
+
+            .music-title {
+                font-size: 0.8rem;
+            }
+
+            .music-status {
+                font-size: 0.7rem;
+            }
+
+            .particles, .balloon {
+                display: none;
+            }
+
+            .newyear-message h1 {
+                font-size: 2rem;
+                margin-bottom: 15px;
+            }
+
+            .newyear-message p {
+                font-size: 1rem;
+                margin-bottom: 20px;
+                padding: 0 15px;
+            }
+
+            .close-fireworks {
+                padding: 12px 25px;
+                font-size: 0.95rem;
+            }
+
+            .hero {
+                padding: 40px 15px;
+                min-height: 90vh;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+                margin-bottom: 15px;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 40px;
+            }
+
+            .countdown-container h2 {
+                font-size: 1.3rem !important;
+                margin-bottom: 20px !important;
+            }
+
+            .countdown {
+                gap: 10px;
+            }
+
+            .time-unit {
+                min-width: 70px;
+                padding: 15px 10px;
+            }
+
+            .time-value {
+                font-size: 1.8rem;
+            }
+
+            .time-label {
+                font-size: 0.75rem;
+                letter-spacing: 1px;
+            }
+
+            section {
+                padding: 50px 15px;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+                margin-bottom: 40px;
+            }
+
+            .highlights-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .highlight-card {
+                padding: 25px 18px;
+            }
+
+            .highlight-emoji {
+                font-size: 2.2rem;
+                margin-bottom: 15px;
+            }
+
+            .highlight-card h3 {
+                font-size: 1.1rem;
+            }
+
+            .highlight-card p {
+                font-size: 0.9rem;
+            }
+
+            .memories-text {
+                padding: 0 10px;
+            }
+
+            .memories-text p {
+                font-size: 0.95rem;
+                line-height: 1.7;
+                margin-bottom: 15px;
+            }
+            
+            .timeline-item {
+                flex-direction: column !important;
+                transform: translateX(0) !important;
+                gap: 15px;
+                margin-bottom: 50px;
+            }
+            
+            .timeline-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            .timeline-content {
+                padding: 20px 18px;
+            }
+
+            .timeline-content h3 {
+                font-size: 1.2rem;
+                margin-bottom: 12px;
+            }
+
+            .timeline-content p {
+                font-size: 0.95rem;
+                line-height: 1.7;
+            }
+
+            .achievement-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .achievement-card {
+                padding: 30px 20px;
+            }
+
+            .achievement-icon {
+                font-size: 2.5rem;
+            }
+
+            .achievement-card h3 {
+                font-size: 1.3rem;
+            }
+
+            .achievement-card p {
+                font-size: 0.95rem;
+            }
+
+            .vision-2026 {
+                padding: 35px 20px;
+                border-radius: 20px;
+            }
+
+            .vision-content h2 {
+                font-size: 1.8rem;
+                margin-bottom: 25px;
+            }
+
+            .vision-content p {
+                font-size: 0.95rem;
+                line-height: 1.8;
+                margin-bottom: 20px;
+            }
+
+            .vision-footer {
+                font-size: 1.6rem;
+                margin-top: 30px;
+            }
+        }
+
+        /* Small Mobile Phones */
+        @media (max-width: 480px) {
+            .branding {
+                font-size: 0.75rem;
+                padding: 6px 12px;
+            }
+
+            .profile-section {
+                padding: 6px 12px;
+                gap: 8px;
+            }
+
+            .profile-image {
+                width: 35px;
+                height: 35px;
+            }
+
+            .profile-name {
+                font-size: 0.75rem;
+            }
+
+            .profile-handle {
+                font-size: 0.65rem;
+            }
+
+            .music-player {
+                bottom: 10px;
+                right: 10px;
+                padding: 8px 12px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .countdown {
+                gap: 8px;
+            }
+
+            .time-unit {
+                min-width: 60px;
+                padding: 12px 8px;
+            }
+
+            .time-value {
+                font-size: 1.5rem;
+            }
+
+            .time-label {
+                font-size: 0.7rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .highlight-emoji {
+                font-size: 2rem;
+            }
+
+            .vision-2026 {
+                padding: 30px 15px;
+            }
+
+            .vision-content h2 {
+                font-size: 1.5rem;
+            }
+
+            .vision-footer {
+                font-size: 1.4rem;
+            }
+
+            .newyear-message h1 {
+                font-size: 1.6rem;
+            }
+
+            .newyear-message p {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Landscape Mobile */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .hero {
+                min-height: auto;
+                padding: 30px 20px;
+            }
+
+            .countdown-container {
+                margin-top: 20px;
+            }
+
+            .profile-section {
+                top: 10px;
+            }
+
+            section {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Branding -->
+    <div class="branding">
+        <span>sean_tech_hub</span>
+    </div>
+
+    <!-- Profile Section -->
+    <div class="profile-section" id="profileSection">
+        <img src="img.jpeg" alt="sean_tech_hub profile" class="profile-image">
+        <div class="profile-info">
+            <span class="profile-name">sean_tech_hub</span>
+            <span class="profile-handle">
+                <svg class="tiktok-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                </svg>
+                Follow on TikTok
+            </span>
+        </div>
+    </div>
+
+    <!-- Fireworks Overlay -->
+    <div class="fireworks-overlay" id="fireworksOverlay">
+        <canvas class="fireworks-canvas" id="fireworksCanvas"></canvas>
+        <div class="newyear-message">
+            <h1>🎊 HAPPY NEW YEAR 2026! 🎊</h1>
+            <p>✨ Our year to shine starts NOW! ✨</p>
+            <button class="close-fireworks" id="closeFireworks">Continue the Journey 🚀</button>
+        </div>
+    </div>
+
+    <!-- Music Player -->
+    <div class="music-player" id="musicPlayer">
+        <button class="music-toggle" id="musicToggle" aria-label="Toggle music">
+            <span id="musicIcon">🎵</span>
+        </button>
+        <div class="music-info">
+            <div class="music-title">Uplifting Journey</div>
+            <div class="music-status" id="musicStatus">Click to play</div>
+        </div>
+    </div>
+
+    <!-- Hidden Audio Player -->
+    <audio id="bgMusic" loop autoplay muted>
+        <source src="Jimmy Cliff - Shelter of your Love - lisashenmaid.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Autoplay Overlay -->
+    <div id="autoplayOverlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 10000; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 20px;">
+        <div style="text-align: center; color: white;">
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px;">🎉 Welcome to 2026 🎉</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 30px;">Click anywhere to start experience</p>
+            <button id="startButton" style="padding: 20px 40px; font-size: 1.2rem; background: linear-gradient(135deg, #f093fb, #f5576c); border: none; border-radius: 50px; color: #000; cursor: pointer; font-weight: bold; box-shadow: 0 10px 30px rgba(240, 147, 251, 0.5);">
+                🎵 Start Experience
+            </button>
+        </div>
+    </div>
+
+    <!-- Animated Elements -->
+    <div class="particles" id="particles" aria-hidden="true"></div>
+    <div id="balloons" aria-hidden="true"></div>
+
+    <main>
+        <!-- Hero Section -->  
+        <section class="hero">
+            <h1>2025: WE MADE IT THROUGH</h1>
+            <p class="hero-subtitle">To everyone who stayed strong - this is our story</p>
+            
+            <div class="countdown-container">
+                <h2 style="margin-bottom: 30px; font-size: 1.8rem;">Time Until 2026</h2>
+                <div class="countdown">
+                    <div class="time-unit">
+                        <div class="time-value" id="days">00</div>
+                        <div class="time-label">Days</div>
+                    </div>
+                    <div class="time-unit">
+                        <div class="time-value" id="hours">00</div>
+                        <div class="time-label">Hours</div>
+                    </div>
+                    <div class="time-unit">
+                        <div class="time-value" id="minutes">00</div>
+                        <div class="time-label">Minutes</div>
+                    </div>
+                    <div class="time-unit">
+                        <div class="time-value" id="seconds">00</div>
+                        <div class="time-label">Seconds</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Memories Video Section -->
+        <section class="memories">
+            <h2 class="section-title">Our 2025 Journey</h2>
+            
+            <div class="highlights-grid">
+                <div class="highlight-card">
+                    <span class="highlight-emoji">🔥</span>
+                    <h3>Epic Comebacks</h3>
+                    <p>We turned our lowest moments into launching pads for success</p>
+                </div>
+                
+                <div class="highlight-card">
+                    <span class="highlight-emoji">💫</span>
+                    <h3>Magic Moments</h3>
+                    <p>Those unexpected wins that reminded us anything is possible</p>
+                </div>
+                
+                <div class="highlight-card">
+                    <span class="highlight-emoji">🎯</span>
+                    <h3>Goals Achieved</h3>
+                    <p>We said we would, and we absolutely did it!</p>
+                </div>
+                
+                <div class="highlight-card">
+                    <span class="highlight-emoji">⚡</span>
+                    <h3>Power Moves</h3>
+                    <p>Bold decisions that changed everything for the better</p>
+                </div>
+            </div>
+            
+            <div class="memories-text">
+                <p><strong>From sean_tech_hub to all of you:</strong></p>
+                <p>This year tested us. It pushed us to our limits. There were moments we wanted to give up, moments we doubted ourselves, moments when the path ahead seemed impossible.</p>
+                <p><strong>But look at us now.</strong> Still standing. Still fighting. Still believing in better days.</p>
+                <p>Every struggle you faced was a lesson. Every setback was preparation for your comeback. You didn't just survive 2025 - you grew through it.</p>
+            </div>
+        </section>
+
+        <!-- Timeline -->
+        <section class="timeline">
+            <h2 class="section-title">The Journey of 2025</h2>
+            <div class="timeline-container">
+                <div class="timeline-item">
+                    <div class="timeline-icon">💪</div>
+                    <div class="timeline-content">
+                        <h3>The Struggles We Faced</h3>
+                        <p>I know it was hard. Maybe you lost something precious. Maybe you faced setbacks that felt crushing. The sleepless nights, the tears, the moments of despair - they were all real. But here's what matters: <strong>you kept going</strong>. Even when it hurt, even when you felt alone, you pushed through. That takes incredible strength.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon">💡</div>
+                    <div class="timeline-content">
+                        <h3>The Breakthroughs We Earned</h3>
+                        <p>And then it happened - those beautiful moments when things finally clicked. When hard work paid off. When opportunities appeared. When you realized your persistence was worth it. These weren't accidents. <strong>You earned every single win.</strong> Your determination created those breakthroughs.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon">🚀</div>
+                    <div class="timeline-content">
+                        <h3>The Growth We Achieved</h3>
+                        <p>Look how far you've come. The person reading this right now is not the same person who started 2025. <strong>You're wiser, stronger, more resilient.</strong> You've developed skills you didn't have. You've built character under pressure. You've proven to yourself that you can handle whatever life throws at you. That's priceless.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements -->
+        <section class="achievements">
+            <h2 class="section-title">Our Victories</h2>
+            <div class="achievement-grid">
+                <div class="achievement-card">
+                    <div class="achievement-icon">🎯</div>
+                    <h3>Goals Crushed</h3>
+                    <p>We set ambitious targets and didn't just meet them—we exceeded them. Every goal achieved was a testament to our dedication and focus.</p>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="achievement-icon">🌟</div>
+                    <h3>Skills Mastered</h3>
+                    <p>From novice to competent, from good to great. We invested in ourselves and the dividends are already showing.</p>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="achievement-icon">🤝</div>
+                    <h3>Connections Made</h3>
+                    <p>Relationships built, networks expanded, communities strengthened. Our circle grew with people who inspire and elevate us.</p>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="achievement-icon">💎</div>
+                    <h3>Resilience Built</h3>
+                    <p>The most valuable achievement—the unshakeable belief that no matter what comes, we have what it takes to handle it.</p>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="achievement-icon">📈</div>
+                    <h3>Progress Made</h3>
+                    <p>Not overnight success, but consistent growth. Small wins that compound into major transformations.</p>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="achievement-icon">✨</div>
+                    <h3>Dreams Pursued</h3>
+                    <p>We didn't just dream—we took action. Every step forward was a vote of confidence in our vision.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vision for 2026 -->
+        <section class="vision-2026">
+            <div class="vision-sparkles" id="visionSparkles"></div>
+            <div class="vision-content">
+                <h2>✨ 2026: OUR YEAR TO SHINE ✨</h2>
+                <p><strong>Listen to me carefully:</strong> 2026 is going to be different. Not because life will suddenly get easy, but because <em>you</em> are different now.</p>
+                <p>You've been through the fire and came out stronger. You know what you're capable of. You've seen yourself overcome the impossible. <strong>That confidence? That's your superpower for 2026.</strong></p>
+                <p>This is the year you take all those lessons, all that growth, all that resilience, and you build the life you deserve. The year your dreams stop being dreams and start becoming reality. The year people look at you and say, "Wow, they really did it."</p>
+                <p><strong>I believe in you. sean_tech_hub believes in you. And most importantly, you need to believe in yourself.</strong></p>
+                <p>Let's make 2026 legendary. Not perfect - legendary. Full of growth, wins, breakthroughs, and yes, even a few challenges to keep us sharp.</p>
+                <p class="vision-footer">🥂 Here's to US. Here's to 2026. Let's GO! 🚀</p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Autoplay with User Interaction Overlay
+        const autoplayOverlay = document.getElementById('autoplayOverlay');
+        const startButton = document.getElementById('startButton');
+        const bgMusic = document.getElementById('bgMusic');
+        const musicIcon = document.getElementById('musicIcon');
+        const musicStatus = document.getElementById('musicStatus');
+        let isPlaying = false;
+
+        // Start experience function
+        function startExperience() {
+            bgMusic.muted = false;
+            bgMusic.play().then(() => {
+                isPlaying = true;
+                musicIcon.textContent = '🎶';
+                musicStatus.textContent = 'Now playing';
+                autoplayOverlay.style.display = 'none';
+            }).catch((error) => {
+                console.error('Playback failed:', error);
+                // If still fails, just hide overlay
+                autoplayOverlay.style.display = 'none';
+                musicStatus.textContent = 'Click to play';
+            });
+        }
+
+        // Button click
+        startButton.addEventListener('click', startExperience);
+
+        // Click anywhere on overlay
+        autoplayOverlay.addEventListener('click', (e) => {
+            if (e.target === autoplayOverlay) {
+                startExperience();
+            }
+        });
+
+        // Try immediate autoplay (will work in some browsers)
+        setTimeout(() => {
+            bgMusic.muted = false;
+            bgMusic.play().then(() => {
+                isPlaying = true;
+                musicIcon.textContent = '🎶';
+                musicStatus.textContent = 'Now playing';
+                autoplayOverlay.style.display = 'none';
+            }).catch(() => {
+                // Show overlay if autoplay fails
+                autoplayOverlay.style.display = 'flex';
+            });
+        }, 100);
+
+        // Particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // Balloons
+        const balloonsContainer = document.getElementById('balloons');
+        const balloonColors = ['#ff6b9d', '#c44569', '#f8b500', '#4834df', '#00d2d3', '#ff9ff3', '#54a0ff'];
+        
+        function createBalloon() {
+            const balloon = document.createElement('div');
+            balloon.className = 'balloon';
+            balloon.style.left = Math.random() * 100 + '%';
+            balloon.style.backgroundColor = balloonColors[Math.floor(Math.random() * balloonColors.length)];
+            balloon.style.animationDelay = Math.random() * 3 + 's';
+            balloon.style.animationDuration = (Math.random() * 5 + 10) + 's';
+            balloonsContainer.appendChild(balloon);
+            
+            setTimeout(() => balloon.remove(), 20000);
+        }
+        
+        // Create initial balloons
+        for (let i = 0; i < 8; i++) {
+            setTimeout(() => createBalloon(), i * 800);
+        }
+        // Keep creating balloons
+        setInterval(createBalloon, 3000);
+
+        // Music Player Control
+        const musicToggle = document.getElementById('musicToggle');
+
+        musicToggle.addEventListener('click', () => {
+            if (isPlaying) {
+                bgMusic.pause();
+                musicIcon.textContent = '🎵';
+                musicStatus.textContent = 'Paused';
+                isPlaying = false;
+            } else {
+                bgMusic.play().then(() => {
+                    musicIcon.textContent = '🎶';
+                    musicStatus.textContent = 'Now playing';
+                    isPlaying = true;
+                }).catch((error) => {
+                    console.error('Playback failed:', error);
+                    musicStatus.textContent = 'Click to play';
+                });
+            }
+        });
+
+        // Countdown
+        function updateCountdown() {
+            const now = Date.now();
+            const newYear = Date.UTC(2026, 0, 1, 0, 0, 0);
+            const distance = newYear - now;
+
+            if (distance < 0) {
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Scroll Animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.2, rootMargin: '0px 0px -100px 0px' });
+
+        document.querySelectorAll('.timeline-item, .achievement-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Vision Section Sparkles
+        const visionSparkles = document.getElementById('visionSparkles');
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = Math.random() * 100 + '%';
+            sparkle.style.top = Math.random() * 100 + '%';
+            sparkle.style.animationDelay = Math.random() * 2 + 's';
+            sparkle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            visionSparkles.appendChild(sparkle);
+            
+            setTimeout(() => sparkle.remove(), 6000);
+        }
+        
+        // Create sparkles periodically
+        setInterval(createSparkle, 300);
+        for (let i = 0; i < 15; i++) {
+            setTimeout(() => createSparkle(), i * 200);
+        }
+
+        // Profile Click - Open TikTok (you can change the URL)
+        document.getElementById('profileSection').addEventListener('click', () => {
+            window.open('https://www.tiktok.com/@tech_hub599?_r=1&_t=ZM-92ePz9BTvnE', '_blank');
+        });
+
+        // New Year Fireworks System
+        const fireworksOverlay = document.getElementById('fireworksOverlay');
+        const fireworksCanvas = document.getElementById('fireworksCanvas');
+        const ctx = fireworksCanvas.getContext('2d');
+        const closeFireworks = document.getElementById('closeFireworks');
+        let fireworksActive = false;
+        let animationId;
+
+        // Set canvas size
+        function resizeCanvas() {
+            fireworksCanvas.width = window.innerWidth;
+            fireworksCanvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        // Firework particle class
+        class Particle {
+            constructor(x, y, color) {
+                this.x = x;
+                this.y = y;
+                this.color = color;
+                this.velocity = {
+                    x: (Math.random() - 0.5) * 8,
+                    y: (Math.random() - 0.5) * 8
+                };
+                this.alpha = 1;
+                this.decay = Math.random() * 0.015 + 0.015;
+            }
+
+            update() {
+                this.velocity.y += 0.1;
+                this.x += this.velocity.x;
+                this.y += this.velocity.y;
+                this.alpha -= this.decay;
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.alpha;
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        let particles = [];
+        const colors = ['#ff6b9d', '#ffd700', '#4834df', '#00d2d3', '#ff9ff3', '#feca57', '#54a0ff'];
+
+        function createFirework() {
+            const x = Math.random() * fireworksCanvas.width;
+            const y = Math.random() * fireworksCanvas.height * 0.5;
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            
+            for (let i = 0; i < 50; i++) {
+                particles.push(new Particle(x, y, color));
+            }
+        }
+
+        function animateFireworks() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+            ctx.fillRect(0, 0, fireworksCanvas.width, fireworksCanvas.height);
+
+            particles = particles.filter(particle => particle.alpha > 0);
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+
+            if (fireworksActive) {
+                animationId = requestAnimationFrame(animateFireworks);
+            }
+        }
+
+        function startFireworks() {
+            fireworksActive = true;
+            fireworksOverlay.classList.add('active');
+            animateFireworks();
+            
+            // Create fireworks periodically
+            const fireworkInterval = setInterval(() => {
+                if (fireworksActive) {
+                    createFirework();
+                } else {
+                    clearInterval(fireworkInterval);
+                }
+            }, 200);
+
+            // Play celebration sound (if music is playing, pause it temporarily)
+            if (isPlaying) {
+                bgMusic.pause();
+            }
+        }
+
+        function stopFireworks() {
+            fireworksActive = false;
+            fireworksOverlay.classList.remove('active');
+            cancelAnimationFrame(animationId);
+            particles = [];
+            
+            // Resume music if it was playing
+            if (isPlaying) {
+                bgMusic.play();
+            }
+        }
+
+        closeFireworks.addEventListener('click', stopFireworks);
+
+        // Check if it's New Year
+        function checkNewYear() {
+            const now = new Date();
+            const newYear = new Date(Date.UTC(2026, 0, 1, 0, 0, 0));
+            const distance = newYear.getTime() - now.getTime();
+
+            // If it's New Year (within first 5 minutes of 2026)
+            if (distance < 0 && distance > -300000) {
+                // Check if fireworks already shown in this session
+                if (!sessionStorage.getItem('fireworks2026Shown')) {
+                    setTimeout(() => {
+                        startFireworks();
+                        sessionStorage.setItem('fireworks2026Shown', 'true');
+                    }, 2000); // Show after 2 seconds
+                }
+            }
+        }
+
+        // Check on page load
+        checkNewYear();
+
+        // Check every 30 seconds
+        setInterval(checkNewYear, 30000);
+    </script>
+</body>
+</html>
