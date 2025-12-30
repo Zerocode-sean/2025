@@ -5,10 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2026: Our Year to Shine - sean_tech_hub</title>
     <meta name="description" content="A heartfelt celebration of 2025's journey and an encouraging vision for 2026 - brought to you by sean_tech_hub">
+    <meta name="keywords" content="2026, New Year, motivation, inspiration, personal growth, sean_tech_hub">
+    <meta name="author" content="sean_tech_hub">
     
-    <!-- Social Media -->
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://two025-zjdg.onrender.com/">
     <meta property="og:title" content="2026: Our Year to Shine">
-    <meta property="og:description" content="From sean_tech_hub: Celebrating our struggles, victories, and the amazing year ahead">
+    <meta property="og:description" content="From sean_tech_hub: Celebrating our struggles, victories, and the amazing year ahead. Let's make 2026 legendary!">
+    <meta property="og:image" content="https://two025-zjdg.onrender.com/img.jpeg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://two025-zjdg.onrender.com/">
+    <meta property="twitter:title" content="2026: Our Year to Shine">
+    <meta property="twitter:description" content="From sean_tech_hub: Celebrating our struggles, victories, and the amazing year ahead. Let's make 2026 legendary!">
+    <meta property="twitter:image" content="https://two025-zjdg.onrender.com/img.jpeg">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#f093fb">
     
     <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎉</text></svg>">
@@ -24,11 +39,58 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
             background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
             color: #fff;
             overflow-x: hidden;
             scroll-behavior: smooth;
+            line-height: 1.6;
+        }
+
+        /* Page Load Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Apply entrance animations */
+        .hero {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .hero h1 {
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .hero-subtitle {
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+        }
+
+        .countdown-container {
+            animation: fadeInUp 0.8s ease-out 0.6s backwards;
+        }
+
+        /* Focus States for Accessibility */
+        button:focus-visible,
+        a:focus-visible,
+        .profile-section:focus-visible {
+            outline: 3px solid #f093fb;
+            outline-offset: 4px;
+        }
+
+        *:focus-visible {
+            outline-color: #f093fb;
         }
 
         /* Branding */
@@ -69,6 +131,8 @@
             box-shadow: 0 8px 32px rgba(240, 147, 251, 0.2);
             transition: all 0.3s ease;
             cursor: pointer;
+            text-decoration: none;
+            color: inherit;
         }
 
         .profile-section:hover {
@@ -229,32 +293,47 @@
             bottom: 30px;
             right: 30px;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 15px 20px;
+            background: linear-gradient(135deg, rgba(240, 147, 251, 0.2), rgba(245, 87, 108, 0.2));
+            backdrop-filter: blur(15px);
+            padding: 16px 24px;
             border-radius: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(240, 147, 251, 0.4);
             display: flex;
             align-items: center;
             gap: 15px;
             transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(240, 147, 251, 0.3);
         }
 
         .music-player:hover {
-            background: rgba(255, 255, 255, 0.15);
+            background: linear-gradient(135deg, rgba(240, 147, 251, 0.3), rgba(245, 87, 108, 0.3));
             transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(240, 147, 251, 0.4);
+            border-color: rgba(240, 147, 251, 0.6);
         }
 
         .music-toggle {
-            background: none;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
             border: none;
             font-size: 1.5rem;
             cursor: pointer;
             transition: transform 0.3s ease;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(240, 147, 251, 0.4);
         }
 
         .music-toggle:hover {
-            transform: scale(1.2);
+            transform: scale(1.15);
+            box-shadow: 0 6px 16px rgba(240, 147, 251, 0.6);
+        }
+
+        .music-toggle:active {
+            transform: scale(1.05);
         }
 
         .music-info {
@@ -358,29 +437,29 @@
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-size: clamp(3rem, 8vw, 6.5rem);
             font-weight: 900;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             background: linear-gradient(135deg, #f093fb, #f5576c);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes glow {
-            from {
-                filter: drop-shadow(0 0 20px rgba(240, 147, 251, 0.5));
-            }
-            to {
-                filter: drop-shadow(0 0 40px rgba(245, 87, 108, 0.7));
-            }
+            letter-spacing: -2px;
+            line-height: 1.1;
         }
 
         .hero-subtitle {
-            font-size: clamp(1.2rem, 3vw, 1.8rem);
-            margin-bottom: 60px;
-            opacity: 0.9;
+            font-size: clamp(1.3rem, 3.5vw, 2.2rem);
+            margin-bottom: 80px;
+            opacity: 0.95;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        .countdown-container h2 {
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-weight: 700;
+            letter-spacing: 0.5px;
         }
 
         .countdown-container {
@@ -422,174 +501,126 @@
 
         /* Section Styling */
         section {
-            padding: 100px 20px;
+            padding: 120px 20px;
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+        }
+
+        /* Section dividers */
+        section:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(240, 147, 251, 0.3), transparent);
         }
 
         .section-title {
-            font-size: clamp(2rem, 4vw, 3rem);
+            font-size: clamp(2.5rem, 5vw, 4rem);
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 80px;
             background: linear-gradient(135deg, #f093fb, #f5576c);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            font-weight: 900;
+            letter-spacing: -1px;
+            line-height: 1.2;
         }
 
-        /* Memories Section */
-        .memories {
+        /* The 2025 Story Section */
+        .story-2025 {
             text-align: center;
         }
 
-        .highlights-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin-bottom: 50px;
+        .story-intro {
+            max-width: 800px;
+            margin: 0 auto 60px;
+            text-align: left;
+            padding: 0 20px;
         }
 
-        .highlight-card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 40px 25px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            cursor: pointer;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .highlight-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .highlight-card:hover::before {
-            left: 100%;
-        }
-
-        .highlight-card:hover {
-            transform: translateY(-10px) scale(1.05);
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(240, 147, 251, 0.5);
-            box-shadow: 0 20px 60px rgba(240, 147, 251, 0.3);
-        }
-
-        .highlight-emoji {
-            font-size: 3.5rem;
+        .story-intro p {
+            font-size: 1.15rem;
+            line-height: 1.9;
             margin-bottom: 20px;
-            display: block;
-            animation: float-emoji 3s ease-in-out infinite;
+            opacity: 0.92;
         }
 
-        @keyframes float-emoji {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .highlight-card:nth-child(1) .highlight-emoji { animation-delay: 0s; }
-        .highlight-card:nth-child(2) .highlight-emoji { animation-delay: 0.5s; }
-        .highlight-card:nth-child(3) .highlight-emoji { animation-delay: 1s; }
-        .highlight-card:nth-child(4) .highlight-emoji { animation-delay: 1.5s; }
-
-        .highlight-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            background: linear-gradient(135deg, #f093fb, #f5576c);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .highlight-card p {
-            font-size: 0.95rem;
-            opacity: 0.8;
-            line-height: 1.6;
-        }
-
-        .memories-text {
-            max-width: 700px;
+        .story-timeline {
+            max-width: 900px;
             margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .story-chapter {
+            display: flex;
+            align-items: flex-start;
+            gap: 30px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
             text-align: left;
         }
 
-        .memories-text p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 20px;
-            opacity: 0.9;
-        }
-
-        /* Timeline */
-        .timeline-container {
-            position: relative;
-            padding: 40px 0;
-        }
-
-        .timeline-item {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-            margin-bottom: 80px;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.6s ease;
-        }
-
-        .timeline-item.visible {
+        .story-chapter.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        .timeline-item:nth-child(even) {
-            flex-direction: row-reverse;
-        }
-
-        .timeline-icon {
+        .chapter-icon {
             flex-shrink: 0;
-            width: 80px;
-            height: 80px;
-            background: rgba(255, 255, 255, 0.1);
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, rgba(240, 147, 251, 0.15), rgba(245, 87, 108, 0.15));
             backdrop-filter: blur(10px);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2rem;
-            border: 2px solid rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(240, 147, 251, 0.3);
+            box-shadow: 0 8px 20px rgba(240, 147, 251, 0.2);
         }
 
-        .timeline-content {
+        .chapter-content {
             flex: 1;
             background: rgba(255, 255, 255, 0.05);
             padding: 30px;
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
         }
 
-        .timeline-content h3 {
-            font-size: 1.5rem;
+        .chapter-content h3 {
+            font-size: 1.6rem;
             margin-bottom: 15px;
-            color: #f093fb;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
         }
 
-        .timeline-content p {
-            line-height: 1.8;
+        .chapter-content p {
+            line-height: 1.9;
             opacity: 0.9;
+            font-size: 1.05rem;
         }
 
         /* Achievements */
         .achievement-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
         .achievement-card {
@@ -881,69 +912,51 @@
             }
 
             section {
-                padding: 50px 15px;
+                padding: 70px 15px;
             }
 
             .section-title {
-                font-size: 1.8rem;
-                margin-bottom: 40px;
+                font-size: 2rem;
+                margin-bottom: 50px;
             }
 
-            .highlights-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-
-            .highlight-card {
-                padding: 25px 18px;
-            }
-
-            .highlight-emoji {
-                font-size: 2.2rem;
-                margin-bottom: 15px;
-            }
-
-            .highlight-card h3 {
-                font-size: 1.1rem;
-            }
-
-            .highlight-card p {
-                font-size: 0.9rem;
-            }
-
-            .memories-text {
+            .story-intro {
                 padding: 0 10px;
             }
 
-            .memories-text p {
+            .story-intro p {
                 font-size: 0.95rem;
-                line-height: 1.7;
+                line-height: 1.8;
                 margin-bottom: 15px;
             }
-            
-            .timeline-item {
-                flex-direction: column !important;
-                transform: translateX(0) !important;
-                gap: 15px;
-                margin-bottom: 50px;
+
+            .story-timeline {
+                gap: 30px;
             }
             
-            .timeline-icon {
+            .story-chapter {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            .chapter-icon {
                 width: 60px;
                 height: 60px;
-                font-size: 1.5rem;
+                font-size: 1.8rem;
             }
 
-            .timeline-content {
+            .chapter-content {
                 padding: 20px 18px;
             }
 
-            .timeline-content h3 {
-                font-size: 1.2rem;
+            .chapter-content h3 {
+                font-size: 1.3rem;
                 margin-bottom: 12px;
             }
 
-            .timeline-content p {
+            .chapter-content p {
                 font-size: 0.95rem;
                 line-height: 1.7;
             }
@@ -1100,21 +1113,21 @@
     </div>
 
     <!-- Profile Section -->
-    <div class="profile-section" id="profileSection">
+    <a href="https://www.tiktok.com/@tech_hub599?_r=1&_t=ZM-92ePz9BTvnE" target="_blank" rel="noopener noreferrer" class="profile-section" id="profileSection" aria-label="Follow sean_tech_hub on TikTok">
         <img src="img.jpeg" alt="sean_tech_hub profile" class="profile-image">
         <div class="profile-info">
             <span class="profile-name">sean_tech_hub</span>
             <span class="profile-handle">
-                <svg class="tiktok-icon" viewBox="0 0 24 24" fill="currentColor">
+                <svg class="tiktok-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                     <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
                 </svg>
                 Follow on TikTok
             </span>
         </div>
-    </div>
+    </a>
 
     <!-- Fireworks Overlay -->
-    <div class="fireworks-overlay" id="fireworksOverlay">
+    <div class="fireworks-overlay" id="fireworksOverlay" aria-live="polite">
         <canvas class="fireworks-canvas" id="fireworksCanvas"></canvas>
         <div class="newyear-message">
             <h1>🎊 HAPPY NEW YEAR 2026! 🎊</h1>
@@ -1140,15 +1153,30 @@
     </audio>
 
     <!-- Autoplay Overlay -->
-    <div id="autoplayOverlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 10000; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 20px;">
-        <div style="text-align: center; color: white;">
-            <h2 style="font-size: 2.5rem; margin-bottom: 20px;">🎉 Welcome to 2026 🎉</h2>
-            <p style="font-size: 1.2rem; margin-bottom: 30px;">Click anywhere to start experience</p>
-            <button id="startButton" style="padding: 20px 40px; font-size: 1.2rem; background: linear-gradient(135deg, #f093fb, #f5576c); border: none; border-radius: 50px; color: #000; cursor: pointer; font-weight: bold; box-shadow: 0 10px 30px rgba(240, 147, 251, 0.5);">
+    <div id="autoplayOverlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(15, 12, 41, 0.98), rgba(48, 43, 99, 0.98)); backdrop-filter: blur(10px); z-index: 10000; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 30px;">
+        <div style="text-align: center; color: white; max-width: 600px; padding: 20px;">
+            <div style="font-size: 5rem; margin-bottom: 20px; animation: bounce 1s ease-in-out infinite;">🎉</div>
+            <h2 style="font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 20px; font-weight: 900; background: linear-gradient(135deg, #f093fb, #f5576c); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Welcome to 2026!</h2>
+            <p style="font-size: clamp(1rem, 2.5vw, 1.3rem); margin-bottom: 40px; line-height: 1.6; opacity: 0.95;">Experience our journey with uplifting music.<br/>Click below to begin.</p>
+            <button id="startButton" style="padding: 20px 50px; font-size: 1.2rem; background: linear-gradient(135deg, #f093fb, #f5576c); border: none; border-radius: 50px; color: white; cursor: pointer; font-weight: 700; box-shadow: 0 10px 30px rgba(240, 147, 251, 0.5); transition: all 0.3s ease; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">
                 🎵 Start Experience
             </button>
         </div>
     </div>
+    
+    <style>
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        #startButton:hover {
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 15px 40px rgba(240, 147, 251, 0.7);
+        }
+        #startButton:active {
+            transform: scale(0.98);
+        }
+    </style>
 
     <!-- Animated Elements -->
     <div class="particles" id="particles" aria-hidden="true"></div>
@@ -1183,111 +1211,68 @@
             </div>
         </section>
 
-        <!-- Memories Video Section -->
-        <section class="memories">
-            <h2 class="section-title">Our 2025 Journey</h2>
+        <!-- The 2025 Story - Consolidated Section -->
+        <section class="story-2025">
+            <h2 class="section-title">The 2025 Story</h2>
             
-            <div class="highlights-grid">
-                <div class="highlight-card">
-                    <span class="highlight-emoji">🔥</span>
-                    <h3>Epic Comebacks</h3>
-                    <p>We turned our lowest moments into launching pads for success</p>
-                </div>
-                
-                <div class="highlight-card">
-                    <span class="highlight-emoji">💫</span>
-                    <h3>Magic Moments</h3>
-                    <p>Those unexpected wins that reminded us anything is possible</p>
-                </div>
-                
-                <div class="highlight-card">
-                    <span class="highlight-emoji">🎯</span>
-                    <h3>Goals Achieved</h3>
-                    <p>We said we would, and we absolutely did it!</p>
-                </div>
-                
-                <div class="highlight-card">
-                    <span class="highlight-emoji">⚡</span>
-                    <h3>Power Moves</h3>
-                    <p>Bold decisions that changed everything for the better</p>
-                </div>
-            </div>
-            
-            <div class="memories-text">
+            <div class="story-intro">
                 <p><strong>From sean_tech_hub to all of you:</strong></p>
-                <p>This year tested us. It pushed us to our limits. There were moments we wanted to give up, moments we doubted ourselves, moments when the path ahead seemed impossible.</p>
+                <p>This year tested us like never before. It pushed us to our limits. There were moments we wanted to give up, moments we doubted ourselves, moments when the path ahead seemed impossible.</p>
                 <p><strong>But look at us now.</strong> Still standing. Still fighting. Still believing in better days.</p>
-                <p>Every struggle you faced was a lesson. Every setback was preparation for your comeback. You didn't just survive 2025 - you grew through it.</p>
             </div>
-        </section>
 
-        <!-- Timeline -->
-        <section class="timeline">
-            <h2 class="section-title">The Journey of 2025</h2>
-            <div class="timeline-container">
-                <div class="timeline-item">
-                    <div class="timeline-icon">💪</div>
-                    <div class="timeline-content">
-                        <h3>The Struggles We Faced</h3>
-                        <p>I know it was hard. Maybe you lost something precious. Maybe you faced setbacks that felt crushing. The sleepless nights, the tears, the moments of despair - they were all real. But here's what matters: <strong>you kept going</strong>. Even when it hurt, even when you felt alone, you pushed through. That takes incredible strength.</p>
+            <div class="story-timeline">
+                <div class="story-chapter">
+                    <div class="chapter-icon">💪</div>
+                    <div class="chapter-content">
+                        <h3>The Struggles</h3>
+                        <p>The sleepless nights, the tears, the moments of despair - they were all real. But here's what matters: <strong>you kept going</strong>. Even when it hurt, you pushed through. That takes incredible strength.</p>
                     </div>
                 </div>
                 
-                <div class="timeline-item">
-                    <div class="timeline-icon">💡</div>
-                    <div class="timeline-content">
-                        <h3>The Breakthroughs We Earned</h3>
-                        <p>And then it happened - those beautiful moments when things finally clicked. When hard work paid off. When opportunities appeared. When you realized your persistence was worth it. These weren't accidents. <strong>You earned every single win.</strong> Your determination created those breakthroughs.</p>
+                <div class="story-chapter">
+                    <div class="chapter-icon">💡</div>
+                    <div class="chapter-content">
+                        <h3>The Breakthroughs</h3>
+                        <p>Those beautiful moments when things finally clicked. When hard work paid off. When opportunities appeared. <strong>You earned every single win.</strong> Your determination created those breakthroughs.</p>
                     </div>
                 </div>
                 
-                <div class="timeline-item">
-                    <div class="timeline-icon">🚀</div>
-                    <div class="timeline-content">
-                        <h3>The Growth We Achieved</h3>
-                        <p>Look how far you've come. The person reading this right now is not the same person who started 2025. <strong>You're wiser, stronger, more resilient.</strong> You've developed skills you didn't have. You've built character under pressure. You've proven to yourself that you can handle whatever life throws at you. That's priceless.</p>
+                <div class="story-chapter">
+                    <div class="chapter-icon">🚀</div>
+                    <div class="chapter-content">
+                        <h3>The Growth</h3>
+                        <p>You're not the same person who started 2025. <strong>You're wiser, stronger, more resilient.</strong> You've built character under pressure. You've proven you can handle whatever life throws at you.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Achievements -->
+        <!-- Achievements - Streamlined -->
         <section class="achievements">
             <h2 class="section-title">Our Victories</h2>
             <div class="achievement-grid">
                 <div class="achievement-card">
                     <div class="achievement-icon">🎯</div>
                     <h3>Goals Crushed</h3>
-                    <p>We set ambitious targets and didn't just meet them—we exceeded them. Every goal achieved was a testament to our dedication and focus.</p>
-                </div>
-                
-                <div class="achievement-card">
-                    <div class="achievement-icon">🌟</div>
-                    <h3>Skills Mastered</h3>
-                    <p>From novice to competent, from good to great. We invested in ourselves and the dividends are already showing.</p>
-                </div>
-                
-                <div class="achievement-card">
-                    <div class="achievement-icon">🤝</div>
-                    <h3>Connections Made</h3>
-                    <p>Relationships built, networks expanded, communities strengthened. Our circle grew with people who inspire and elevate us.</p>
+                    <p>We set ambitious targets and exceeded them. Every goal achieved was a testament to our dedication and relentless focus.</p>
                 </div>
                 
                 <div class="achievement-card">
                     <div class="achievement-icon">💎</div>
                     <h3>Resilience Built</h3>
-                    <p>The most valuable achievement—the unshakeable belief that no matter what comes, we have what it takes to handle it.</p>
+                    <p>The unshakeable belief that no matter what comes, we have what it takes. This is our greatest achievement.</p>
                 </div>
                 
                 <div class="achievement-card">
                     <div class="achievement-icon">📈</div>
-                    <h3>Progress Made</h3>
-                    <p>Not overnight success, but consistent growth. Small wins that compound into major transformations.</p>
+                    <h3>Consistent Growth</h3>
+                    <p>Not overnight success, but steady progress. Small wins compounding into major life transformations.</p>
                 </div>
                 
                 <div class="achievement-card">
                     <div class="achievement-icon">✨</div>
-                    <h3>Dreams Pursued</h3>
+                    <h3>Dreams in Motion</h3>
                     <p>We didn't just dream—we took action. Every step forward was a vote of confidence in our vision.</p>
                 </div>
             </div>
@@ -1449,7 +1434,7 @@
             });
         }, { threshold: 0.2, rootMargin: '0px 0px -100px 0px' });
 
-        document.querySelectorAll('.timeline-item, .achievement-card').forEach(el => {
+        document.querySelectorAll('.story-chapter, .achievement-card').forEach(el => {
             observer.observe(el);
         });
 
@@ -1473,11 +1458,8 @@
             setTimeout(() => createSparkle(), i * 200);
         }
 
-        // Profile Click - Open TikTok (you can change the URL)
-        document.getElementById('profileSection').addEventListener('click', () => {
-            window.open('https://www.tiktok.com/@tech_hub599?_r=1&_t=ZM-92ePz9BTvnE', '_blank');
-        });
-
+        // Profile section is now a proper <a> tag - no need for click handling
+        
         // New Year Fireworks System
         const fireworksOverlay = document.getElementById('fireworksOverlay');
         const fireworksCanvas = document.getElementById('fireworksCanvas');
