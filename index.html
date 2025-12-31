@@ -81,6 +81,40 @@
             animation: fadeInUp 0.8s ease-out 0.6s backwards;
         }
 
+        /* Button Click Animations */
+        @keyframes ripple {
+            0% {
+                transform: scale(0);
+                opacity: 0.6;
+            }
+            100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+
+        button, .share-button {
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::after, .share-button::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            pointer-events: none;
+        }
+
+        button:active::after, .share-button:active::after {
+            animation: ripple 0.6s ease-out;
+        }
+
         /* Focus States for Accessibility */
         button:focus-visible,
         a:focus-visible,
@@ -287,24 +321,26 @@
             box-shadow: 0 15px 40px rgba(255, 215, 0, 0.7);
         }
 
-        /* Share Button */
+        /* Share Button - Repositioned to Top Right */
         .share-button {
             position: fixed;
-            bottom: 30px;
-            left: 30px;
+            top: 20px;
+            right: 140px;
             z-index: 1000;
             background: linear-gradient(135deg, #25D366, #128C7E);
-            padding: 16px 24px;
+            padding: 12px 20px;
             border-radius: 50px;
-            border: 2px solid rgba(37, 211, 102, 0.4);
+            border: 2px solid rgba(37, 211, 102, 0.5);
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             transition: all 0.3s ease;
             box-shadow: 0 8px 32px rgba(37, 211, 102, 0.4);
             cursor: pointer;
             text-decoration: none;
             color: white;
+            font-size: 0.9rem;
+            font-weight: 600;
         }
 
         .share-button:hover {
@@ -314,100 +350,72 @@
         }
 
         .share-button:active {
-            transform: translateY(0) scale(0.98);
+            transform: translateY(0) scale(0.95);
         }
 
         .share-icon {
-            width: 28px;
-            height: 28px;
+            width: 22px;
+            height: 22px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
         }
 
-        .share-text {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-
-        .share-title {
-            font-size: 0.9rem;
-            font-weight: 700;
-            line-height: 1;
-        }
-
-        .share-subtitle {
-            font-size: 0.75rem;
-            opacity: 0.9;
-            line-height: 1;
-        }
-
-        /* Music Player */
-        .music-player {
+        /* Twinkling Stars Background */
+        .stars {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 1000;
-            background: linear-gradient(135deg, rgba(240, 147, 251, 0.2), rgba(245, 87, 108, 0.2));
-            backdrop-filter: blur(15px);
-            padding: 16px 24px;
-            border-radius: 50px;
-            border: 2px solid rgba(240, 147, 251, 0.4);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 32px rgba(240, 147, 251, 0.3);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
         }
 
-        .music-player:hover {
-            background: linear-gradient(135deg, rgba(240, 147, 251, 0.3), rgba(245, 87, 108, 0.3));
-            transform: translateY(-2px);
-            box-shadow: 0 12px 40px rgba(240, 147, 251, 0.4);
-            border-color: rgba(240, 147, 251, 0.6);
-        }
-
-        .music-toggle {
-            background: linear-gradient(135deg, #f093fb, #f5576c);
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            width: 45px;
-            height: 45px;
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(240, 147, 251, 0.4);
+            animation: twinkle var(--duration) ease-in-out infinite;
+            opacity: 0;
         }
 
-        .music-toggle:hover {
-            transform: scale(1.15);
-            box-shadow: 0 6px 16px rgba(240, 147, 251, 0.6);
+        .star.large {
+            width: 3px;
+            height: 3px;
+            box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
         }
 
-        .music-toggle:active {
-            transform: scale(1.05);
+        .star.small {
+            width: 1px;
+            height: 1px;
         }
 
-        .music-info {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1); }
         }
 
-        .music-title {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #fff;
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, #f093fb, #f5576c, #feca57, #25D366);
+            background-size: 200% 100%;
+            animation: gradient-flow 3s linear infinite;
+            z-index: 9999;
+            transition: width 0.1s ease-out;
+            box-shadow: 0 2px 10px rgba(240, 147, 251, 0.6);
         }
 
-        .music-status {
-            font-size: 0.75rem;
-            color: rgba(255, 255, 255, 0.7);
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
         }
 
         /* Particles & Balloons */
@@ -503,6 +511,17 @@
             background-clip: text;
             letter-spacing: -2px;
             line-height: 1.1;
+            filter: drop-shadow(0 0 30px rgba(240, 147, 251, 0.8)) drop-shadow(0 0 60px rgba(245, 87, 108, 0.6));
+            animation: glow-pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes glow-pulse {
+            0%, 100% {
+                filter: drop-shadow(0 0 30px rgba(240, 147, 251, 0.6)) drop-shadow(0 0 60px rgba(245, 87, 108, 0.4));
+            }
+            50% {
+                filter: drop-shadow(0 0 40px rgba(240, 147, 251, 1)) drop-shadow(0 0 80px rgba(245, 87, 108, 0.8));
+            }
         }
 
         .hero-subtitle {
@@ -587,6 +606,7 @@
             font-weight: 900;
             letter-spacing: -1px;
             line-height: 1.2;
+            filter: drop-shadow(0 0 20px rgba(240, 147, 251, 0.6)) drop-shadow(0 0 40px rgba(245, 87, 108, 0.4));
         }
 
         /* The 2025 Story Section */
@@ -648,11 +668,22 @@
 
         .chapter-content {
             flex: 1;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.08);
             padding: 30px;
             border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .chapter-content:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(240, 147, 251, 0.4);
+            box-shadow: 0 12px 40px rgba(240, 147, 251, 0.3),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
         }
 
         .chapter-content h3 {
@@ -681,10 +712,13 @@
         }
 
         .achievement-card {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.08);
             padding: 40px 30px;
             border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
             text-align: center;
             transition: all 0.3s ease;
             opacity: 0;
@@ -698,8 +732,10 @@
 
         .achievement-card:hover {
             transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(240, 147, 251, 0.4);
+            box-shadow: 0 15px 50px rgba(240, 147, 251, 0.3),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
         }
 
         .achievement-icon {
@@ -716,6 +752,215 @@
         .achievement-card p {
             line-height: 1.6;
             opacity: 0.9;
+        }
+
+        /* Interactive Vision Board */
+        .vision-board {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 30px;
+            padding: 60px 40px;
+            margin: 60px 0;
+            border: 2px solid rgba(240, 147, 251, 0.3);
+        }
+
+        .vision-board-title {
+            text-align: center;
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #feca57, #f093fb, #f5576c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+        }
+
+        .vision-board-subtitle {
+            text-align: center;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .goal-input-container {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .goal-input {
+            flex: 1;
+            padding: 16px 24px;
+            border-radius: 50px;
+            border: 2px solid rgba(240, 147, 251, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .goal-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .goal-input:focus {
+            border-color: rgba(240, 147, 251, 0.6);
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 30px rgba(240, 147, 251, 0.3);
+        }
+
+        .add-goal-btn {
+            padding: 16px 32px;
+            border-radius: 50px;
+            border: none;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(240, 147, 251, 0.4);
+        }
+
+        .add-goal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(240, 147, 251, 0.6);
+        }
+
+        .goals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .goal-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            animation: slideIn 0.5s ease-out;
+            box-shadow: 0 4px 15px rgba(31, 38, 135, 0.1);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .goal-text {
+            color: white;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .goal-delete {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 87, 108, 0.2);
+            border: none;
+            color: #ff576c;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .goal-delete:hover {
+            background: rgba(255, 87, 108, 0.4);
+            transform: scale(1.1);
+        }
+
+        /* Community Messages Section */
+        .community-messages {
+            margin: 80px 0;
+            padding: 60px 40px;
+            background: linear-gradient(135deg, 
+                rgba(240, 147, 251, 0.1), 
+                rgba(245, 87, 108, 0.1),
+                rgba(254, 202, 87, 0.1)
+            );
+            background-size: 400% 400%;
+            animation: gradient-shift 8s ease infinite;
+            border-radius: 30px;
+            border: 2px solid rgba(240, 147, 251, 0.2);
+        }
+
+        .community-title {
+            text-align: center;
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, #f093fb, #f5576c, #feca57);
+            background-size: 200% 200%;
+            animation: gradient-shift 4s ease infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+        }
+
+        .messages-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .community-message {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            padding: 25px 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 20px rgba(31, 38, 135, 0.1);
+            opacity: 0;
+            animation: fadeInMessage 0.8s ease-out forwards;
+        }
+
+        .community-message:nth-child(1) { animation-delay: 0.1s; }
+        .community-message:nth-child(2) { animation-delay: 0.3s; }
+        .community-message:nth-child(3) { animation-delay: 0.5s; }
+        .community-message:nth-child(4) { animation-delay: 0.7s; }
+
+        @keyframes fadeInMessage {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .message-author {
+            font-weight: 700;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .message-text {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.7;
+            font-style: italic;
         }
 
         /* Vision 2026 */
@@ -845,6 +1090,23 @@
             50% { opacity: 1; transform: translateY(-50px) scale(1); }
         }
 
+        /* Parallax Elements */
+        .parallax-section {
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .parallax-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(240, 147, 251, 0.1), transparent 70%);
+            transform: translateZ(-1px) scale(1.5);
+            z-index: -1;
+        }
+
         /* Mobile */
         @media (max-width: 768px) {
             body {
@@ -895,39 +1157,18 @@
             }
             
             .share-button {
-                bottom: 100px;
-                left: 15px;
-                padding: 12px 18px;
-                gap: 10px;
+                top: 10px;
+                right: 10px;
+                left: auto;
+                bottom: auto;
+                padding: 8px 14px;
+                gap: 8px;
+                font-size: 0.85rem;
             }
 
             .share-icon {
-                width: 24px;
-                height: 24px;
-                font-size: 1.3rem;
-            }
-
-            .share-title {
-                font-size: 0.8rem;
-            }
-
-            .share-subtitle {
-                font-size: 0.7rem;
-            }
-            
-            .music-player {
-                bottom: 15px;
-                right: 15px;
-                padding: 10px 14px;
-                gap: 10px;
-            }
-
-            .music-title {
-                font-size: 0.8rem;
-            }
-
-            .music-status {
-                font-size: 0.7rem;
+                width: 18px;
+                height: 18px;
             }
 
             /* Balloons and particles enabled on mobile */
@@ -1205,6 +1446,12 @@
     </style>
 </head>
 <body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Twinkling Stars -->
+    <div class="stars" id="starsContainer"></div>
+
     <!-- Branding -->
     <div class="branding">
         <span>sean_tech_hub</span>
@@ -1222,6 +1469,16 @@
                 Follow on TikTok
             </span>
         </div>
+    </a>
+
+    <!-- Share Button -->
+    <a href="#" id="shareButton" class="share-button" aria-label="Share on WhatsApp">
+        <div class="share-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+            </svg>
+        </div>
+        <span>Share</span>
     </a>
 
     <!-- Fireworks Overlay -->
@@ -1247,18 +1504,7 @@
         </div>
     </a>
 
-    <!-- Music Player -->
-    <div class="music-player" id="musicPlayer">
-        <button class="music-toggle" id="musicToggle" aria-label="Toggle music">
-            <span id="musicIcon">🎵</span>
-        </button>
-        <div class="music-info">
-            <div class="music-title">Uplifting Journey</div>
-            <div class="music-status" id="musicStatus">Click to play</div>
-        </div>
-    </div>
-
-    <!-- Hidden Audio Player -->
+    <!-- Hidden Audio Player (Auto plays with overlay interaction) -->
     <audio id="bgMusic" loop autoplay muted>
         <source src="Jimmy Cliff - Shelter of your Love - lisashenmaid.mp3" type="audio/mpeg">
     </audio>
@@ -1389,6 +1635,48 @@
             </div>
         </section>
 
+        <!-- Interactive Vision Board -->
+        <section class="vision-board">
+            <h2 class="vision-board-title">✨ Your 2026 Vision Board ✨</h2>
+            <p class="vision-board-subtitle">Set your goals and intentions for the new year. What do you want to achieve in 2026?</p>
+            
+            <div class="goal-input-container">
+                <input 
+                    type="text" 
+                    class="goal-input" 
+                    id="goalInput" 
+                    placeholder="Enter your 2026 goal..."
+                    maxlength="100"
+                />
+                <button class="add-goal-btn" id="addGoalBtn">Add Goal 🎯</button>
+            </div>
+            
+            <div class="goals-grid" id="goalsGrid"></div>
+        </section>
+
+        <!-- Community Messages -->
+        <section class="community-messages">
+            <h2 class="community-title">💬 Community Encouragement 💬</h2>
+            <div class="messages-container">
+                <div class="community-message">
+                    <div class="message-author">@sarah_motivation</div>
+                    <div class="message-text">"This year, I'm choosing to believe in myself more. Every setback is just a setup for a comeback. Let's do this! 💪"</div>
+                </div>
+                <div class="community-message">
+                    <div class="message-author">@mike_dreams</div>
+                    <div class="message-text">"2025 taught me that consistency beats perfection. Small steps every day lead to massive results. Here's to steady progress in 2026! 🚀"</div>
+                </div>
+                <div class="community-message">
+                    <div class="message-author">@lisa_wellness</div>
+                    <div class="message-text">"Taking care of myself isn't selfish, it's necessary. This year, I'm prioritizing my mental health and surrounding myself with positive energy only. ✨"</div>
+                </div>
+                <div class="community-message">
+                    <div class="message-author">@tech_visionary</div>
+                    <div class="message-text">"The best project you'll ever work on is yourself. Let's make 2026 the year we level up in every area of life! 🎯"</div>
+                </div>
+            </div>
+        </section>
+
         <!-- Vision for 2026 -->
         <section class="vision-2026">
             <div class="vision-sparkles" id="visionSparkles"></div>
@@ -1405,12 +1693,101 @@
     </main>
 
     <script>
+        // ===== TWINKLING STARS =====
+        const starsContainer = document.getElementById('starsContainer');
+        const starCount = 150;
+        
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            
+            // Random positioning
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            
+            // Random sizes
+            const size = Math.random();
+            if (size > 0.8) star.classList.add('large');
+            else if (size < 0.3) star.classList.add('small');
+            
+            // Random animation duration
+            star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
+            star.style.animationDelay = Math.random() * 3 + 's';
+            
+            starsContainer.appendChild(star);
+        }
+
+        // ===== SCROLL PROGRESS BAR =====
+        const scrollProgress = document.getElementById('scrollProgress');
+        
+        window.addEventListener('scroll', () => {
+            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (window.scrollY / windowHeight) * 100;
+            scrollProgress.style.width = scrolled + '%';
+        });
+
+        // ===== PARALLAX SCROLLING =====
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            const parallaxElements = document.querySelectorAll('.hero, .vision-2026');
+            
+            parallaxElements.forEach(el => {
+                const speed = 0.5;
+                el.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // ===== VISION BOARD FUNCTIONALITY =====
+        const goalInput = document.getElementById('goalInput');
+        const addGoalBtn = document.getElementById('addGoalBtn');
+        const goalsGrid = document.getElementById('goalsGrid');
+        
+        // Load goals from localStorage
+        let goals = JSON.parse(localStorage.getItem('2026goals')) || [];
+        
+        function renderGoals() {
+            goalsGrid.innerHTML = '';
+            goals.forEach((goal, index) => {
+                const goalCard = document.createElement('div');
+                goalCard.className = 'goal-card';
+                goalCard.innerHTML = `
+                    <div class="goal-text">${goal}</div>
+                    <button class="goal-delete" onclick="deleteGoal(${index})" aria-label="Delete goal">×</button>
+                `;
+                goalsGrid.appendChild(goalCard);
+            });
+        }
+        
+        function addGoal() {
+            const goalText = goalInput.value.trim();
+            if (goalText && goals.length < 12) {
+                goals.push(goalText);
+                localStorage.setItem('2026goals', JSON.stringify(goals));
+                goalInput.value = '';
+                renderGoals();
+            } else if (goals.length >= 12) {
+                alert('You can add up to 12 goals. Focus on quality over quantity! 🎯');
+            }
+        }
+        
+        window.deleteGoal = function(index) {
+            goals.splice(index, 1);
+            localStorage.setItem('2026goals', JSON.stringify(goals));
+            renderGoals();
+        };
+        
+        addGoalBtn.addEventListener('click', addGoal);
+        goalInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') addGoal();
+        });
+        
+        // Initial render
+        renderGoals();
+
         // Autoplay with User Interaction Overlay
         const autoplayOverlay = document.getElementById('autoplayOverlay');
         const startButton = document.getElementById('startButton');
         const bgMusic = document.getElementById('bgMusic');
-        const musicIcon = document.getElementById('musicIcon');
-        const musicStatus = document.getElementById('musicStatus');
         let isPlaying = false;
 
         // Start experience function
@@ -1418,14 +1795,11 @@
             bgMusic.muted = false;
             bgMusic.play().then(() => {
                 isPlaying = true;
-                musicIcon.textContent = '🎶';
-                musicStatus.textContent = 'Now playing';
                 autoplayOverlay.style.display = 'none';
             }).catch((error) => {
                 console.error('Playback failed:', error);
                 // If still fails, just hide overlay
                 autoplayOverlay.style.display = 'none';
-                musicStatus.textContent = 'Click to play';
             });
         }
 
@@ -1444,8 +1818,6 @@
             bgMusic.muted = false;
             bgMusic.play().then(() => {
                 isPlaying = true;
-                musicIcon.textContent = '🎶';
-                musicStatus.textContent = 'Now playing';
                 autoplayOverlay.style.display = 'none';
             }).catch(() => {
                 // Show overlay if autoplay fails
@@ -1486,27 +1858,6 @@
         }
         // Keep creating balloons
         setInterval(createBalloon, 3000);
-
-        // Music Player Control
-        const musicToggle = document.getElementById('musicToggle');
-
-        musicToggle.addEventListener('click', () => {
-            if (isPlaying) {
-                bgMusic.pause();
-                musicIcon.textContent = '🎵';
-                musicStatus.textContent = 'Paused';
-                isPlaying = false;
-            } else {
-                bgMusic.play().then(() => {
-                    musicIcon.textContent = '🎶';
-                    musicStatus.textContent = 'Now playing';
-                    isPlaying = true;
-                }).catch((error) => {
-                    console.error('Playback failed:', error);
-                    musicStatus.textContent = 'Click to play';
-                });
-            }
-        });
 
         // Countdown
         function updateCountdown() {
