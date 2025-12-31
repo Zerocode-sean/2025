@@ -1964,9 +1964,10 @@
 
         // Countdown
         function updateCountdown() {
-            const now = Date.now();
-            const newYear = Date.UTC(2026, 0, 1, 0, 0, 0);
-            const distance = newYear - now;
+            const now = new Date();
+            // Use local timezone midnight, not UTC
+            const newYear = new Date(2026, 0, 1, 0, 0, 0);
+            const distance = newYear.getTime() - now.getTime();
 
             if (distance < 0) {
                 document.getElementById('days').textContent = '00';
@@ -2164,11 +2165,12 @@
         // Check if it's New Year
         function checkNewYear() {
             const now = new Date();
-            const newYear = new Date(Date.UTC(2026, 0, 1, 0, 0, 0));
+            // Use local timezone midnight, not UTC
+            const newYear = new Date(2026, 0, 1, 0, 0, 0);
             const distance = newYear.getTime() - now.getTime();
 
-            // If it's New Year (within first 5 minutes of 2026)
-            if (distance < 0 && distance > -300000) {
+            // If it's New Year (within first 30 minutes of 2026)
+            if (distance < 0 && distance > -1800000) {
                 // Check if fireworks already shown in this session
                 if (!sessionStorage.getItem('fireworks2026Shown')) {
                     setTimeout(() => {
